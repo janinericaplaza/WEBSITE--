@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Christmas Wonderland</title>
+<link rel="icon" type="image/x-icon" href="favicon (1).ico">
+
+<style>
+    body {
+        margin: 0;
+        background: linear-gradient(135deg, #ffb6e6, #ff70c3, #ff99d9);
+        background-size: cover;
+        font-family: "Arial", sans-serif;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 20px;
+        font-size: 3rem;
+        text-shadow: 2px 2px 8px #ff0077;
+    }
+
+    nav a {
+        color: black; 
+        text-decoration: none; 
+        font-size: 1.2em; 
+        margin: 0 20px; 
+        transition: color 0.3s ease-in-out;
+    }
+
+    .video-container {
+        margin-top: 40px;
+    }
+
+    video {
+        width: 80%;
+        border: 5px solid white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px #ff008c;
+    }
+
+    /* Snow container */
+    .snow, .sparkles {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 999;
+    }
+
+    /* Sparkles */
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 8px white;
+        animation: sparkleAnim linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes sparkleAnim {
+        0% { transform: scale(0.3) translateY(0); opacity: 0.9; }
+        50% { transform: scale(1) translateY(50vh); opacity: 1; }
+        100% { transform: scale(0.3) translateY(100vh); opacity: 0; }
+    }
+
+    /* Snowflakes */
+    .snow span {
+        position: absolute;
+        top: -10px;
+        animation: fall linear infinite;
+        color: white;
+        font-size: 20px;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+
+    /* Play music button */
+    #playMusic {
+        margin-top: 20px;
+        background: #ff4da6;
+        border: none;
+        padding: 15px 25px;
+        font-size: 1.2rem;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 10px #ff008c;
+    }
+
+    #playMusic:hover {
+        background: #ff1a8c;
+    }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">Interests</a>
+    <a href="movies.html">Favorite Movies</a>
+    <a href="Pink.html">Pink</a>
+</nav>
+
+<h1>🎀 Pink Christmas Wonderland 🎄</h1>
+
+<!-- PLAY MUSIC BUTTON -->
+<button id="playMusic">🎵 Play Christmas Music</button>
+
+<!-- Video -->
+<div class="video-container">
+    <video controls>
+        <source src="gifts.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- Snow layer -->
+<div class="snow"></div>
+
+<!-- Sparkle / glitter layer -->
+<div class="sparkles"></div>
+
+<!-- Scripts for snow + sparkles -->
+<script>
+    /* Music button */
+    document.getElementById("playMusic").addEventListener("click", function () {
+        const audio = document.getElementById("bgAudio");
+        audio.play();
+        this.style.display = "none";  // hide button after click
+    });
+
+    /* SNOW CREATION */
+    for (let i = 0; i < 50; i++) {
+        let snowflake = document.createElement("span");
+        snowflake.innerHTML = "❄";
+        snowflake.style.left = Math.random() * 100 + "vw";
+        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        snowflake.style.animationDelay = Math.random() * 5 + "s";
+        document.querySelector(".snow").appendChild(snowflake);
+    }
+
+    /* SPARKLE / GLITTER CREATION */
+    for (let i = 0; i < 80; i++) {
+        let sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.animationDuration = (Math.random() * 4 + 2) + "s";
+        sparkle.style.animationDelay = Math.random() * 3 + "s";
+        sparkle.style.opacity = Math.random() * 0.8 + 0.2;
+        document.querySelector(".sparkles").appendChild(sparkle);
+    }
+</script>
+
+</body>
+</html>
